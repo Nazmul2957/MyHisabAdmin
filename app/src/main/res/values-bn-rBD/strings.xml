@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyHisabAdmin</string>
+    <string name="earn">উপার্জনের শিরোনাম</string>
+    <string name="cost">খরচের  শিরোনাম</string>
+    <string name="button_add">যোগ করুন</string>
+
+
+</resources>

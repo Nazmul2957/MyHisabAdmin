@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "163325663901",
+    "firebase_url": "https://myhisab-a47b6-default-rtdb.firebaseio.com",
+    "project_id": "myhisab-a47b6",
+    "storage_bucket": "myhisab-a47b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163325663901:android:238f6138fe1bd52c4fd274",
+        "android_client_info": {
+          "package_name": "com.example.myhisabadmin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACmNvct9TYmw6PUsFIwY_dXCA2TOjxlww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163325663901:android:32e5b1091d5d3f834fd274",
+        "android_client_info": {
+          "package_name": "com.myhisab.hisabapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACmNvct9TYmw6PUsFIwY_dXCA2TOjxlww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
