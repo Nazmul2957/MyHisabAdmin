@@ -14,7 +14,7 @@
         android:theme="@style/Theme.MyHisabAdmin"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
+            android:name=".Screen.SplashScreenActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -24,19 +24,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CostHeadActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".EarnHeadActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".Screen.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait">
 
         </activity>
+        <activity
+            android:name=".Screen.CostHeadActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Screen.EarnHeadActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Screen.MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

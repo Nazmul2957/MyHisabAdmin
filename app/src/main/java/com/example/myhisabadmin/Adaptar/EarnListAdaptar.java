@@ -14,11 +14,11 @@ import com.example.myhisabadmin.R;
 import java.util.ArrayList;
 
 public class EarnListAdaptar extends RecyclerView.Adapter<EarnListAdaptar.ViewHolders> {
-    ArrayList<EarnModel> earnlist;
+
     Context context;
 
-    public EarnListAdaptar(ArrayList<EarnModel> earnlist, Context context) {
-        this.earnlist = earnlist;
+    public EarnListAdaptar(Context context) {
+
         this.context = context;
     }
 
@@ -33,13 +33,13 @@ public class EarnListAdaptar extends RecyclerView.Adapter<EarnListAdaptar.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull EarnListAdaptar.ViewHolders holder, int position) {
-        holder.earnhead.setText(earnlist.get(position).getHead());
+       // holder.earnhead.setText(earnlist.get(position).getHead());
 
     }
 
     @Override
     public int getItemCount() {
-        return earnlist.size();
+        return 0;
     }
 
     public class ViewHolders extends RecyclerView.ViewHolder {

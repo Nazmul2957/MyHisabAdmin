@@ -1,4 +1,4 @@
-package com.example.myhisabadmin;
+package com.example.myhisabadmin.Screen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.myhisabadmin.Network.ApiService;
 import com.example.myhisabadmin.Network.retrofitclient;
+import com.example.myhisabadmin.R;
 import com.example.myhisabadmin.Utils.MySharedPreference;
 import com.example.myhisabadmin.Utils.constants;
 import com.google.gson.JsonObject;
@@ -24,7 +25,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextView login, go_reg;
+    TextView login;
     EditText mobilenum, password;
 
     ProgressDialog progressDialog;

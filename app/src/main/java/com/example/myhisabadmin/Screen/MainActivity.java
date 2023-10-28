@@ -1,14 +1,14 @@
-package com.example.myhisabadmin;
+package com.example.myhisabadmin.Screen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.icu.text.CaseMap;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.myhisabadmin.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,39 +1,40 @@
-package com.example.myhisabadmin;
+package com.example.myhisabadmin.Screen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import com.example.myhisabadmin.Adaptar.EarnListAdaptar;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.myhisabadmin.Model.AccountHeadAdd.AccountHeadAdd;
+import com.example.myhisabadmin.Network.ApiService;
+import com.example.myhisabadmin.Network.retrofitclient;
+import com.example.myhisabadmin.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CostHeadActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     Button costSave;
     EditText editText;
-    String Costs;
-    DatabaseReference reference;
     RecyclerView recyclerView;
-    ArrayList<EarnModel> list;
+
+    ApiService api;
+    ProgressDialog progressDialog;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -46,36 +47,14 @@ public class CostHeadActivity extends AppCompatActivity {
         editText = findViewById(R.id.cost_head);
         recyclerView = findViewById(R.id.costhead_list);
 
-        list = new ArrayList<>();
-        reference = FirebaseDatabase.getInstance().getReference("Earn Cost");
+        progressDialog = new ProgressDialog(CostHeadActivity.this);
+        progressDialog.setMessage("Please Wait......");
+        progressDialog.setCancelable(false);
 
 
         BottomNav();
         Save();
-        listshow();
-    }
-
-    public void listshow() {
-        EarnListAdaptar adaptar = new EarnListAdaptar(list, getApplicationContext());
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerView.setAdapter(adaptar);
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    EarnModel model = dataSnapshot.getValue(EarnModel.class);
-                    list.add(model);
-                }
-                adaptar.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        //listshow();
     }
 
 
@@ -83,16 +62,31 @@ public class CostHeadActivity extends AppCompatActivity {
         costSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Costs = editText.getText().toString();
-                EarnModel model = new EarnModel(Costs);
-                reference = FirebaseDatabase.getInstance().getReference().child("Earn Cost");
-                String key = reference.push().getKey();
-                reference.child(key).setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        editText.setText("");
-                    }
-                });
+                if (!TextUtils.isEmpty(editText.getText().toString())) {
+                    progressDialog.show();
+                    api = retrofitclient.get(getApplicationContext()).create(ApiService.class);
+                    api.addhead(editText.getText().toString(), "1").enqueue(new Callback<AccountHeadAdd>() {
+                        @Override
+                        public void onResponse(Call<AccountHeadAdd> call, Response<AccountHeadAdd> response) {
+                            if (response.isSuccessful() && response.body() != null) {
+                                progressDialog.dismiss();
+                                String message = response.body().getMessage();
+                                Toast.makeText(CostHeadActivity.this, message, Toast.LENGTH_SHORT).show();
+                                editText.setText("");
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<AccountHeadAdd> call, Throwable t) {
+                            progressDialog.dismiss();
+                            Toast.makeText(CostHeadActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                } else {
+                    editText.setError("please Input Field");
+                    editText.requestFocus();
+                }
             }
         });
     }
