@@ -19,6 +19,7 @@ import com.example.myhisabadmin.Model.AccountHeadAdd.AccountHeadAdd;
 import com.example.myhisabadmin.Network.ApiService;
 import com.example.myhisabadmin.Network.retrofitclient;
 import com.example.myhisabadmin.R;
+import com.example.myhisabadmin.Utils.MySharedPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import retrofit2.Call;
@@ -109,6 +110,11 @@ public class CostHeadActivity extends AppCompatActivity {
                         Intent intent1 = new Intent(getApplicationContext(), EarnHeadActivity.class);
                         startActivity(intent1);
                         overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.logout:
+                        MySharedPreference.editor(getApplicationContext()).clear().commit();
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                        finish();
                         return true;
                 }
 

@@ -12,4 +12,9 @@
         android:id="@+id/cost_head"
         android:icon="@drawable/costhead"
         android:title="Cost Head" />
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/logout"
+        android:title="Log Out" />
 </menu>
